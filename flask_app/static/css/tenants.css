@@ -1,0 +1,162 @@
+/* Google Font imports - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* ===== Colors ===== */
+  /* --body-color: #e4e9f7; */
+  --body-color: #e4e6e7;
+  --sidebar-color: #fff;
+  /* --primary-color: #695cfe; */
+  /* --primary-color: rgb(120, 119, 211); */
+  --primary-color: rgb(120, 164, 212);
+  --primary-color-light: #f6f5ff;
+  --toggle-color: #ddd;
+  --text-color: #707070;
+}
+
+body {
+  height: 100vh;
+  background-color: var(--body-color);
+}
+
+/* .main-container {
+  display: flex;
+} */
+
+/* <---- Reusabel CSS ---->  */
+.sidebar .text {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.sidebar .image {
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+}
+
+/* <---- SIDEBAR ---->  */
+#side_nav {
+  min-width: 250px;
+  max-width: 250px;
+  height: 100vh;
+  padding: 10px 14px;
+  background-color: var(--sidebar-color);
+  /* box-shadow: 8px 0 6px -6px rgb(112, 112, 112); */
+}
+
+/* SIDEBAR HEADER */
+.sidebar .image-text img {
+  width: 50px;
+  border-radius: 6px;
+}
+
+.sidebar .header-box .image-text {
+  display: flex;
+  align-items: center;
+}
+
+.header-box .image-text .header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-text .name {
+  font-weight: 600;
+}
+
+.header-text .profession {
+  margin-top: -2px;
+}
+
+/* <----- NAV LINKS 2 ---->  */
+.sidebar li {
+  height: 50px;
+  margin-top: 10px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar li .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  font-size: 20px;
+}
+
+.sidebar li .icon,
+.sidebar li .text {
+  color: var(--text-color);
+  transition: var(--tran-02);
+}
+
+.sidebar li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: var(--tran-04);
+}
+
+.sidebar li a:hover {
+  background: var(--primary-color);
+}
+
+.sidebar li :hover .icon,
+.sidebar a:hover .text {
+  color: var(--sidebar-color);
+}
+
+.sidebar .menu-bar {
+  height: calc(100% - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* <---- RIGHT-CONTAINER ---->  */
+.right-container {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* <---- RIGHT-CONTAINER-HEADER ---->  */
+.content-header {
+  height: 80px;
+  padding: 20px;
+  box-shadow: 0 8px 6px -6px rgb(112, 112, 112);
+}
+
+.content-header h1 {
+  color: black;
+  font-size: 2em;
+}
+
+/* <---- CONTENT ---->  */
+/* .content {
+  padding: 20px;
+}
+.content .text {
+  color: var(--text-color);
+} */
+
+.card {
+  /* margin-top: 10px; */
+  box-shadow: 8px 8px 12px -12px rgb(112, 112, 112);
+}
+
+/* .tenant-card {
+  display: none;
+} */
