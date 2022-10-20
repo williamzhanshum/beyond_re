@@ -61,3 +61,34 @@ class User:
         if len(results) < 1:
             return None
         return cls(results[0])
+
+# <----- GRABS ALL THE USERS INFO -----> 
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM users;"
+        #results returns a list of dictionarites with the data form the table in the db
+        results = connectToMySQL(cls.db).query_db(query)
+        users = []
+
+        for user in results:
+            users.append(cls(user))
+        return users
+
+
+# <----- SAVES USER INFO-----> 
+    @classmethod 
+    def save(cls,data):
+        query = "INSERT INTO users (first_name,last_name,email,password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"
+        return connectToMySQL(cls.db).query_db(query, data)
+
+        # <----- SAVES USER INFO-----> 
+    @classmethod 
+    def save(cls,data):
+        query = "INSERT INTO users (first_name,last_name,email,password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"
+        return connectToMySQL(cls.db).query_db(query, data)
+
+# <----- DELETE USER METHOD -----> 
+    @classmethod 
+    def destroy(cls,data):
+        query = "DELETE FROM users WHERE id = %(id)s;"
+        return connectToMySQL(cls.db).query_db(query, data)
