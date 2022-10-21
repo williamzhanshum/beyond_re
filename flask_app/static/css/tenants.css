@@ -50,6 +50,7 @@ body {
   height: 100vh;
   padding: 10px 14px;
   background-color: var(--sidebar-color);
+  position: fixed;
   /* box-shadow: 8px 0 6px -6px rgb(112, 112, 112); */
 }
 
@@ -130,6 +131,7 @@ body {
 .right-container {
   min-height: 100vh;
   width: 100%;
+  margin-left: 250px;
 }
 
 /* <---- RIGHT-CONTAINER-HEADER ---->  */

@@ -123,42 +123,70 @@
                                 <div class="col-sm-4">
                                     {% if tenant.tenant_img == ''%}
                                     <img src="{{ url_for('static', filename='images/default-profile-icon.png')}}"
-                                        class="rounded-4 img-fluid" alt="tenant-img">
+                                        class="rounded-4 img-fluid" alt="tenant-img" style="min-height: 75px;">
                                     {% else %}
-                                    <img src="{{ tenant.tenant_img}}" class="rounded-4 img-fluid" alt="tenant-img">
+                                    <img src="{{ tenant.tenant_img}}" class="rounded-4 img-fluid"
+                                        style="min-height: 75px;" alt="tenant-img">
                                     {% endif %}
                                 </div>
 
 
                                 <div class="col-sm-8" style="font-size:1vw;">
                                     <h5 class="card-title text-start ">{{tenant.first_name}} {{tenant.last_name}}</h5>
-                                    {% if tenant.address==''%}
+                                    <p class="card-subtitle mb-2 text-muted text-start fs-6">{{tenant.address}}
+                                    </p>
+                                    <!-- {% if tenant.address==''%}
                                     <p class="card-subtitle mb-2 text-muted text-start fs-6">No property assigned.
                                     </p>
                                     {% else %}
                                     <p class="card-subtitle mb-2 text-muted text-start fs-6">{{tenant.address}}
                                     </p>
-                                    {% endif %}
+                                    {% endif %} -->
                                 </div>
                             </div>
                             <hr class="h-color mx-2">
                             <ul class="list-group" style="font-size:1vw;">
+                                {% if tenant.primary_phone==''%}
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                                    <i class='bx bx-mobile icon fs-5 text-secondary' style="font-size:1vw;"></i>
+                                    -
+                                </li>
+                                {% else %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                                     <i class='bx bx-mobile icon fs-5 text-secondary' style="font-size:1vw;"></i>
                                     {{tenant.primary_phone}}
                                 </li>
+                                {% endif %}
+
+                                {% if tenant.secondary_phone==''%}
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                                     <i class='bx bxs-phone icon fs-5 text-secondary' style="font-size:1vw;"></i>
                                     -
                                 </li>
+                                {% else %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                                    <i class='bx bxs-phone icon fs-5 text-secondary' style="font-size:1vw;"></i>
+                                    {{tenant.secondary_phone}}
+                                </li>
+                                {% endif %}
+
+                                {% if tenant.email=='' %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                                    <i class='bx bxs-envelope icon fs-5 text-secondary' style="font-size:1vw;"></i>
+                                    -
+                                </li>
+                                {% else %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                                     <i class='bx bxs-envelope icon fs-5 text-secondary' style="font-size:1vw;"></i>
                                     {{tenant.email}}
                                 </li>
+                                {% endif %}
                             </ul>
                             <hr class="h-color mx-2">
-                            <a href="#" class="card-link btn btn-sm btn-outline-primary">Edit</a>
-                            <a href="#" class="card-link btn btn-sm btn-outline-danger">Delete</a>
+                            <a href="#" class="card-link btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                data-bs-target="#edit-tenant-modal-{{tenant.tenant_id}}">Edit</a>
+                            <a href="/tenants/delete/{{tenant.tenant_id}}/{{tenant.property_id}}"
+                                class="card-link btn btn-sm btn-outline-danger">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -215,7 +243,7 @@
                         </div>
                         <div class="col-12">
                             <label for="property" class="form-label">Property</label>
-                            <select class="form-select" aria-label="property-select">
+                            <select class="form-select" aria-label="property-select" name="property_id">
                                 <option selected>Assign tenant to a property</option>
                                 {% for property in properties %}
                                 <option value="{{property.id}}">{{property.address}}</option>
@@ -246,6 +274,91 @@
             </div>
         </div>
     </div>
+
+    <!-- Edit Tenant Modal  -->
+    {% for tenant in tenants %}
+    <div class="modal fade" id="edit-tenant-modal-{{tenant.tenant_id}}" tabindex="-1"
+        aria-labelledby="editTenantModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="newTenantModalLabel">Edit Tenant</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3" action="tenants/update/{{tenant.tenant_id}}" method="post">
+                        <div class="col-md-6">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name"
+                                value="{{tenant.first_name}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name"
+                                value="{{tenant.last_name}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="primary_phone" class="form-label">Primary Phone</label>
+                            <input type="text" class="form-control" id="primary_phone" placeholder="650-371-3498"
+                                name="primary_phone" value="{{tenant.primary_phone}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="secondary_phone" class="form-label">Secondary Phone</label>
+                            <input type="text" class="form-control" id="secondary_phone" name="secondary_phone"
+                                value="{{tenant.secondary_phone}}">
+                        </div>
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="text" class="form-control" id="email" name="email" value="{{tenant.email}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="dob" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="dob" name="dob" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select id="gender" class="form-select" name="gender">
+                                <option selected>Choose...</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Non-binary</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="property" class="form-label">Property</label>
+                            <select class="form-select" aria-label="property-select" name="property_id">
+                                <option selected>Assign tenant to a property</option>
+                                {% for property in properties %}
+                                <option value="{{property.id}}">{{property.address}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- temp upload url  -->
+                        <div class="col-12">
+                            <label for="tenant_img" class="form-label">Tenant image url</label>
+                            <input type="text" class="form-control" id="tenant_img" placeholder="Image url address"
+                                name="tenant_img">
+                        </div>
+
+                        <!-- Upload file below for upload API  -->
+                        <!-- <div class="input-group">
+                            <input type="file" class="form-control" id="inputGroupFile04"
+                                aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="tenant_img">
+                            <button class="btn btn-outline-secondary" type="button"
+                                id="inputGroupFileAddon04">Button</button>
+                        </div> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Add</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
 
     <!-- BOOTSTRAP JS LINKS  -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
