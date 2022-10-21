@@ -43,7 +43,7 @@ class Property:
             properties.append(cls(one_property))
         return properties 
 
-# <----- UPDATES SHOW IN DB-----> 
+# <----- UPDATES PROPERTY IN DB-----> 
     @classmethod
     def update(cls,data):
         query = "UPDATE properties SET address=%(address)s, address_2=%(address_2)s, city=%(city)s, state=%(state)s, zip_code=%(zip_code)s, tenant_occ=%(tenant_occ)s, property_img=%(property_img)s, updated_at=NOW() WHERE id=%(id)s;"

@@ -26,10 +26,6 @@ body {
   background-color: var(--body-color);
 }
 
-/* .main-container {
-  display: flex;
-} */
-
 /* <---- Reusabel CSS ---->  */
 .sidebar .text {
   font-size: 16px;
@@ -50,7 +46,7 @@ body {
   height: 100vh;
   padding: 10px 14px;
   background-color: var(--sidebar-color);
-  /* box-shadow: 8px 0 6px -6px rgb(112, 112, 112); */
+  /* box-shadow: 15px 0 6px -6px rgb(112, 112, 112); */
 }
 
 /* SIDEBAR HEADER */
@@ -77,22 +73,7 @@ body {
   margin-top: -2px;
 }
 
-/* <---- NAV LINKS 1 ----> */
-/* hr.h-color {
-  background-color: var(--text-color);
-}
-
-.sidebar li:hover {
-  background: var(--primary-color);
-  border-radius: 8px;
-}
-
-.sidebar li :hover .icon,
-.sidebar a:hover .text {
-  color: var(--sidebar-color);
-} */
-
-/* <----- NAV LINKS 2 ---->  */
+/* <----- NAV LINKS ---->  */
 
 .sidebar li {
   height: 50px;
@@ -160,15 +141,11 @@ body {
   font-size: 2em;
 }
 
-/* <---- CONTENT ---->  */
-/* .content {
-  padding: 20px;
-}
-.content .text {
-  color: var(--text-color);
-} */
-
 .card {
   /* margin-top: 10px; */
   box-shadow: 8px 8px 12px -12px rgb(112, 112, 112);
 }
+
+/* .map-prop-card:hover {
+  transform: scale(1.25);
+} */

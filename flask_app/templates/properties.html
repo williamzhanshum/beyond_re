@@ -11,22 +11,22 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <!-- CSS Only -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/properties.css') }}" />
 
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-
+    <!-- GOOGLE MAPS API  -->
 
     <title>Properties</title>
 </head>
 
 <body>
-    <div class="main-container d-flex">
 
+    <!-- MAIN CONTAINER  -->
+    <div class="main-container d-flex">
         <!-- SideBar  -->
         <div class="sidebar" id="side_nav">
-
             <!-- Sidebar Header  -->
             <div class="header-box px-2 pt-3 pb-4">
                 <div class="image-text">
@@ -92,14 +92,13 @@
             <!-- NAV LINKS 2  -->
             <ul class="list-unstyled">
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="/logout">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
             </ul>
         </div>
-
 
         <!-- RIGHT CONTAINER  -->
         <div class="caontainer-fluid right-container">
@@ -117,20 +116,23 @@
             <!-- CONTENT TABS  -->
             <ul class="nav nav-tabs p-3" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="gallery-tab" data-bs-toggle="tab"
+                    <button class="nav-link active text-secondary" id="gallery-tab" data-bs-toggle="tab"
                         data-bs-target="#gallery-tab-pane" type="button" role="tab" aria-controls="gallery-tab-pane"
                         aria-selected="true">Gallery
                         View</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map-tab-pane"
-                        type="button" role="tab" aria-controls="map-tab-pane" aria-selected="false">Map
+                    <button class="nav-link text-secondary" id="map-tab" data-bs-toggle="tab"
+                        data-bs-target="#map-tab-pane" type="button" role="tab" aria-controls="map-tab-pane"
+                        aria-selected="false">Map
                         View</button>
                 </li>
             </ul>
 
-            <!-- GALLERY VIEW CONTENT  -->
+            <!-- PROPERTIES CONTENT  -->
             <div class="tab-content p-3" id="myTabContent">
+
+                <!-- GALLERY VIEW -->
                 <div class="tab-pane fade show active" id="gallery-tab-pane" role="tabpanel"
                     aria-labelledby="gallery-tab" tabindex="0">
 
@@ -172,11 +174,59 @@
                 </div>
 
                 <!-- MAP VIEW  -->
-                <div class="tab-pane fade" id="map-tab-pane" role="tabpanel" aria-labelledby="map-tab" tabindex="0">
-                    <div class="container-fluid text-center justify-content-between bg-light">
+                <div class="tab-pane fade p-2" id="map-tab-pane" role="tabpanel" aria-labelledby="map-tab" tabindex="0">
+                    <div class="container-fluid text-center justify-content-between">
                         <div class="row g-0 text-center border-dark">
-                            <div class="col-sm-6 col-md-8 bg-secondary">Map Area</div>
-                            <div class="col-6 col-md-4 bg-primary">Properties List</div>
+                            <div class="col-sm-6 col-md-8 vh-100" id="map"></div>
+                            <div class="col-6 col-md-4 bg-light flex-column p-3">
+                                <h5 class="my-2">Properties List</h5>
+
+                                <div class="card mb-3 map-prop-card">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="../static/images/house_1.jpg"
+                                                class="img-fluid rounded-start h-100" alt="property image">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body text-start">
+                                                <h5>440 N Wolfe St</h5>
+                                                <p>Sunnyvale, CA 94085</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3 map-prop-card">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="../static/images/house-2.jpg"
+                                                class="img-fluid rounded-start h-100" alt="property image">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body text-start">
+                                                <h5>234 Escuela Ave</h5>
+                                                <p>Mountain View, CA 94040</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3 map-prop-card">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="../static/images/dillon-kydd-XGvwt544g8k-unsplash.jpg"
+                                                class="img-fluid rounded-start h-100" alt="property image">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body text-start">
+                                                <h5>233 3rd St</h5>
+                                                <p>Los Altos, CA 94022</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -295,7 +345,7 @@
                             <!-- Uplod file below for upload API-->
                             <!-- <div class="input-group">
                                 <input type="file" class="form-control" id="inputGroupFile04"
-                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="property_img">
                                 <button class="btn btn-outline-secondary" type="button"
                                     id="inputGroupFileAddon04">Button</button>
                             </div> -->
@@ -419,15 +469,15 @@
                             <div class="col-12">
                                 <label for="property_img" class="form-label">Property image url</label>
                                 <input type="text" class="form-control" id="property_img" placeholder="Image Address"
-                                    name="property_img">
+                                    name="property_img" value="{{property.property_img}}">
                             </div>
                             <!-- Uplod file below for upload API-->
                             <!-- <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile04"
-                                aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                            <button class="btn btn-outline-secondary" type="button"
-                                id="inputGroupFileAddon04">Button</button>
-                        </div> -->
+                                <input type="text" class="form-control" id="inputGroupFile04"
+                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="property_img">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    id="inputGroupFileAddon04">Button</button>
+                            </div> -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -439,6 +489,82 @@
         </div>
         {% endfor %}
 
+        <!-- GOOGLE MAPS API SCRIPT  -->
+        <script>
+            function initMap() {
+                // Map Options 
+                let options = {
+                    zoom: 12,
+                    center: { lat: 37.3688, lng: -122.0363 }
+                }
+
+                // New Map 
+                let map = new google.maps.Map(document.getElementById('map'), options)
+
+                // addMarker({ lat: 37.3688, lng: -122.0363 })
+                // addMarker({ lat: 37.3992554, lng: -122.0941212 })
+
+                // // Add Marker function
+                // function addMarker(coords) {
+                //     let marker = new google.maps.Marker({
+                //         position: coords,
+                //         map: map
+                //     })
+                // }
+
+
+                // Add One Marker at a time
+                let marker = new google.maps.Marker({
+                    position: { lat: 37.3840875, lng: -122.0127955 },
+                    map: map
+                })
+
+                let marker2 = new google.maps.Marker({
+                    position: { lat: 37.3992576, lng: -122.0952155 },
+                    map: map
+                })
+
+                let marker3 = new google.maps.Marker({
+                    position: { lat: 37.3775706, lng: -122.1091318 },
+                    map: map
+                })
+
+                // Info Window 
+                let infoWindow = new google.maps.InfoWindow({
+                    content: '<h5 class=card-title">440 N Wolfe</h5><p>Sunnyvale, CA 94085</p>'
+                });
+                marker.addListener('mouseover', function () {
+                    infoWindow.open(map, marker);
+                })
+                marker.addListener('mouseout', function () {
+                    infoWindow.close(map, marker);
+                })
+
+                let infoWindow2 = new google.maps.InfoWindow({
+                    content: '<h5 class=card-title">234 Escuela Ave #5</h5><p>Mountain View, Ca 94040</p>'
+                });
+                marker2.addListener('mouseover', function () {
+                    infoWindow.open(map, marker2);
+                })
+                marker2.addListener('mouseout', function () {
+                    infoWindow.close(map, marker2);
+                })
+
+                let infoWindow3 = new google.maps.InfoWindow({
+                    content: '<h5 class=card-title">440 N Wolfe</h5><p>Sunnyvale, CA 94085</p>'
+                });
+                marker3.addListener('mouseover', function () {
+                    infoWindow.open(map, marker3);
+                })
+                marker3.addListener('mouseout', function () {
+                    infoWindow.close(map, marker3);
+                })
+            }
+
+        </script>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDluyeirQrVDLUW7ytQ1zXVZu-LoI4BHWU&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v6_cABCDE"
+            async defer></script>
 
 
         <!-- BOOTSTRAP JS LINKS  -->

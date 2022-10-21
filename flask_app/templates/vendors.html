@@ -87,10 +87,9 @@
             </ul>
             <hr class="h-color mx-2">
 
-            <!-- NAV LINKS 2  -->
             <ul class="list-unstyled">
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="/logout">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -104,7 +103,7 @@
             <!-- CONTENT HEADER  -->
             <nav class="navbar navbar-expand-lg bg-light content-header">
                 <div class="container-fluid">
-                    <h1>William's Vendors</h1>
+                    <h1>{{session['first_name']}}'s Vendors</h1>
                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
                         data-bs-target="#add-vendor-modal">
                         <a class="text nav-link" href="#">Add Vendor</a>
@@ -116,109 +115,79 @@
             <!-- CONTENT BODY -->
             <div class="row gy-3 p-4">
                 <!-- VENDOR CARD -->
+                {% for vendor in vendors %}
                 <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card card-vendor">
+                    <div class="card card-vendor h-100">
                         <div class="card-header">
-                            <h5 class="card-title text-center">Vendor Name</h5>
-                            <p class="card-subtitle mb-2 text-muted text-center">Company Name
+                            <h5 class="card-title text-center">{{vendor.first_name}} {{vendor.last_name}}</h5>
+                            {% if vendor.company_name == ''%}
+                            <p class="card-subtitle mb-2 text-muted text-center">-
                             </p>
+                            {% else %}
+                            <p class="card-subtitle mb-2 text-muted text-center">{{vendor.company_name}}
+                            </p>
+                            {% endif %}
                         </div>
-                        <div class="card-body">
-                            <ul class="list-group ">
+                        <div class="card-body text-break">
+                            <ul class="list-group" style="font-size:1vw;">
+                                {% if vendor.phone_num == ''%}
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                                     <i class='bx bx-mobile icon fs-5 text-secondary'></i>
-                                    Phone Number
+                                    -
                                 </li>
+                                {% else %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                                    <i class='bx bx-mobile icon fs-5 text-secondary'></i>
+                                    {{vendor.phone_num}}
+                                </li>
+                                {% endif %}
+                                {% if vendor.email == ''%}
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                                     <i class='bx bxs-envelope icon fs-5 text-secondary'></i>
-                                    Email
+                                    -
                                 </li>
+                                {% else %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 ">
+                                    <i class='bx bxs-envelope icon fs-5 text-secondary'></i>
+                                    {{vendor.email}}
+                                </li>
+                                {% endif %}
+                                {% if vendor.web_link == ''%}
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                                     <i class='bx bx-link-alt icon fs-5 text-secondary'></i>
-                                    Website
+                                    -
                                 </li>
+                                {% else %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 ">
+                                    <i class='bx bx-link-alt icon fs-5 text-secondary'></i>
+                                    {{vendor.web_link}}
+                                </li>
+                                {% endif %}
+
+                                {% if vendor.social_link == ''%}
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0">
                                     <i class='bx bxs-group icon fs-5 text-secondary'></i>
-                                    Social Link
+                                    -
                                 </li>
+                                {% else %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                                    <i class='bx bxs-group icon fs-5 text-secondary'></i>
+                                    {{vendor.social_link}}
+                                </li>
+                                {% endif %}
                             </ul>
                             <hr class="h-color mx-2">
-                            <a href="#" class="card-link btn btn-sm btn-outline-danger">Delete</a>
-                            <a href="#" class="card-link btn btn-sm btn-outline-primary">Edit</a>
+                            <a href="/vendors/delete/{{vendor.id}}"
+                                class="card-link btn btn-sm btn-outline-danger">Delete</a>
+                            <a href="/vendors/edit/{{vendor.id}}" class="card-link btn btn-sm btn-outline-primary"
+                                data-bs-toggle="modal" data-bs-target="#edit-vendor-modal-{{vendor.id}}">Edit</a>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
 
-
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card card-vendor">
-                        <div class="card-header">
-                            <h5 class="card-title text-center">Vendor Name</h5>
-                            <p class="card-subtitle mb-2 text-muted text-center">Company Name
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-group ">
-                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
-                                    <i class='bx bx-mobile icon fs-5 text-secondary'></i>
-                                    Phone Number
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
-                                    <i class='bx bxs-envelope icon fs-5 text-secondary'></i>
-                                    Email
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
-                                    <i class='bx bx-link-alt icon fs-5 text-secondary'></i>
-                                    Website
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
-                                    <i class='bx bxs-group icon fs-5 text-secondary'></i>
-                                    Social Link
-                                </li>
-                            </ul>
-                            <hr class="h-color mx-2">
-                            <a href="#" class="card-link btn btn-sm btn-outline-danger">Delete</a>
-                            <a href="#" class="card-link btn btn-sm btn-outline-primary">Edit</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card card-vendor">
-                        <div class="card-header">
-                            <h5 class="card-title text-center">Vendor Name</h5>
-                            <p class="card-subtitle mb-2 text-muted text-center">Company Name
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-group ">
-                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
-                                    <i class='bx bx-mobile icon fs-5 text-secondary'></i>
-                                    Phone Number
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
-                                    <i class='bx bxs-envelope icon fs-5 text-secondary'></i>
-                                    Email
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
-                                    <i class='bx bx-link-alt icon fs-5 text-secondary'></i>
-                                    Website
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
-                                    <i class='bx bxs-group icon fs-5 text-secondary'></i>
-                                    Social Link
-                                </li>
-                            </ul>
-                            <hr class="h-color mx-2">
-                            <a href="#" class="card-link btn btn-sm btn-outline-danger">Delete</a>
-                            <a href="#" class="card-link btn btn-sm btn-outline-primary">Edit</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-
-
 
         <!-- Add Vendor Modal -->
         <div class="modal fade" id="add-vendor-modal" tabindex="-1" aria-labelledby="addVendorModalLabel"
@@ -230,7 +199,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="row g-3">
+                        <form class="row g-3" action="/vendors/create" method="post">
                             <div class="col-md-6">
                                 <label for="first_name" class="form-label">First Name</label>
                                 <input type="text" class="form-control" id="first_name" name="first_name">
@@ -260,25 +229,74 @@
                                 <label for="social_link" class="form-label">Social Media Link</label>
                                 <input type="text" class="form-control" id="social_link" name="social_link">
                             </div>
-                            <div class="col-12">
-                                <!-- <label for="property" class="form-label">Property</label> -->
-                                <select class="form-select" aria-label="property-select">
-                                    <option selected>Assign vendor to property</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Add</button>
+                        <button type="submit" class="btn btn-success">Add</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
 
+
+        <!-- EDIT Vendor Modal -->
+        {% for vendor in vendors %}
+        <div class="modal fade" id="edit-vendor-modal-{{vendor.id}}" tabindex="-1"
+            aria-labelledby="editVendorModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editVendorModalLabel">Edit Vendor</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3" action="/vendors/update/{{vendor.id}}" method="post">
+                            <div class="col-md-6">
+                                <label for="first_name" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name"
+                                    value="{{vendor.first_name}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last_name" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name"
+                                    value="{{vendor.last_name}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone_num" class="form-label">Primary Phone</label>
+                                <input type="text" class="form-control" id="phone_num" placeholder="650-371-3498"
+                                    name="phone_num" value="{{vendor.phone_num}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="company_name" class="form-label">Comapny</label>
+                                <input type="text" class="form-control" id="company_name" name="company_name"
+                                    value="{{vendor.company_name}}">
+                            </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="text" class="form-control" id="email" name="email"
+                                    value="{{vendor.email}}">
+                            </div>
+                            <div class="col-12">
+                                <label for="web_link" class="form-label">Website Link</label>
+                                <input type="text" class="form-control" id="web_link" name="web_link"
+                                    value="{{vendor.web_link}}">
+                            </div>
+                            <div class="col-12">
+                                <label for="social_link" class="form-label">Social Media Link</label>
+                                <input type="text" class="form-control" id="social_link" name="social_link"
+                                    value="{{vendor.social_link}}">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
 
 
 

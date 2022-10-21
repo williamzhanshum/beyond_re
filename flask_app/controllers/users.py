@@ -8,7 +8,7 @@ bcrypt = Bcrypt(app)
 
 @app.route('/')
 def index():
-    return redirect('/dashboard')
+    return redirect('/login')
 
 # <---- LOGIN/REG PAGE ----> 
 @app.route('/login')
@@ -61,14 +61,13 @@ def login():
 #<---- DASHBOARD ---->
 @app.route('/dashboard')
 def dashboard():
+    if 'user_id' not in session: 
+        return redirect('/login')
+
     return render_template('dashboard.html')
 
-# <---- TENANTS PAGE ---->
-@app.route('/tenants')
-def tenants():
-    return render_template('tenants.html')
-
-#<---- VENDORS PAGE ----> 
-@app.route('/vendors')
-def vendors():
-    return render_template('vendors.html')
+# <----- Route to LOGOUT and clear session ----->
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/login')

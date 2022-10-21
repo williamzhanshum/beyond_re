@@ -8,7 +8,7 @@ from flask_app.controllers import users # might not need these
 @app.route('/properties')
 def properties():
     if 'user_id' not in session: 
-        return redirect('/')
+        return redirect('/login')
 
     properties = Property.get_all()
     return render_template('properties.html', properties=properties)
@@ -46,9 +46,6 @@ def edit_property(id):
     property_id = data['id']
     properties = Property.get_one(data)
     
-    print('------- LOOK BELOW -------')
-    print(property_id, properties)
-    
     return render_template('properties.html', property_id=property_id, properties=properties)
 
 #<---- UPDATED THE SHOW IN DB ---->
@@ -68,14 +65,13 @@ def property_update(id):
     # show_validation = Show.validate_show(data)
     # if not show_validation:
     #     return redirect(f'/shows/edit/{id}')
-    print('YOU ARE HERE')
     Property.update(data)
     return redirect('/properties')
 
 
 #<---- DELETE PROPERTY FROM DB ---->
 @app.route('/properties/delete/<int:id>')
-def delete(id):
+def delete_property(id):
     data ={
         'id': id
     }
