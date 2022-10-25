@@ -72,7 +72,7 @@ def tenant_update(tenant_id):
     # show_validation = Show.validate_show(data)
     # if not show_validation:
     #     return redirect(f'/shows/edit/{id}')
-    Property.update(data)
+    Tenant.update(data)
     return redirect('/tenants')
 
 

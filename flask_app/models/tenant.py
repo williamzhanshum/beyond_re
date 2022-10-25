@@ -52,13 +52,13 @@ class Tenant:
 # <----- UPDATES TENANT IN DB-----> 
     @classmethod
     def update(cls,data):
-
-        query = "UPDATE tenants SET (first_name, last_name, primary_phone, secondary_phone, email, dob, gender, tenant_img) VALUES (%(first_name)s, %(last_name)s, %(primary_phone)s, %(secondary_phone)s, %(email)s, %(dob)s, %(gender)s, %(tenant_img)s);"
+        print('HELLO THERE')
+        query = "UPDATE tenants SET first_name=%(first_name)s, last_name=%(last_name)s, primary_phone=%(primary_phone)s, secondary_phone=%(secondary_phone)s, email=%(email)s, dob=%(dob)s, gender=%(gender)s, tenant_img=%(tenant_img)s WHERE id=%(tenant_id)s;"
         tenant_id = connectToMySQL(cls.db).query_db(query, data)
 
         data['tenant_id'] = tenant_id
 
-        query2 = 'UPDATE property_has_tenant (property_id, tenant_id) VALUES (%(property_id)s, %(tenant_id)s);'
+        query2 = 'UPDATE property_has_tenant SET property_id=%(property_id)s, tenant_id=%(tenant_id)s WHERE tenant_id=%(tenant_id)s;'
         
         return connectToMySQL(cls.db).query_db(query2,data)
 
