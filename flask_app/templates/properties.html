@@ -450,6 +450,7 @@
                             </div>
                             <div>
                                 <label for=" checkbox" class="form-label">Tenant Occupied?</label>
+                                {% if property.tenant_occ == 'Yes' %}
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="tenant_occ" id="select_time"
                                         value="Yes" checked>
@@ -464,6 +465,23 @@
                                         No
                                     </label>
                                 </div>
+                                {% endif %}
+                                {% if property.tenant_occ == 'No' %}
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tenant_occ" id="select_time"
+                                        value="Yes" checked>
+                                    <label class="form-check-label" for="select_time">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tenant_occ" id="select_time"
+                                        value="No" checked>
+                                    <label class="form-check-label" for="select_time">
+                                        No
+                                    </label>
+                                </div>
+                                {% endif %}
                             </div>
                             <!-- temporary Upload Url  -->
                             <div class="col-12">
