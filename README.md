@@ -21,6 +21,7 @@ Beyond Real Estate is built on Python, SQL, Flask, Google API, and Bootstrap.
   - [Full CRUD for registered users](#FullCRUDforregisteredusers)
   - [Google Maps API](#GoogleMapsApi)
   - [Conclusion](#Conclusion)
+  - [Next Steps](#nextSteps)
 
 <a name='Login/Registration'></a>
 ## Login/Registration
@@ -32,7 +33,7 @@ In order to use the application users must first create an account to access all
 ## Full CRUD for registered users
 <img src='https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/015e0075-c9ce-4371-b785-a24e04cbcb16.gif?ClientID=vimeo-core-prod&Date=1674862329&Signature=12a8a5d97042c28e08853914b31b6117f85d05bb' width='600'/>
 
-Registered users have access to full CRUD features for their properties, tenants, and vendors. Registered users can create, edit and delete the properties, tenants, and vendors in their profile. They are able to update information that is related to what they need and they can also upload pictures.  
+Registered users have access to full CRUD features for their properties, tenants, and vendors. Registered users can create, edit and delete the properties, tenants, and vendors in their profile. They are able to update information that is related to what they need and they can also upload pictures. For example, users can edit whether a property is vacant or occupied; the changes with be visible in the overall properties view too.
 
 <a name='GoogleMapsApi'></a>
 ## Google Maps API
@@ -43,7 +44,20 @@ This application used the Google API to render that map and geolocation to creat
 <a name='Conclusion'></a>
 ## Conclusion
 
+This project gave me the opportunity to apply and demonstrate what I have learned in:
 
+creating a database to seamlessly and coherently connect data
+setting up a backend server with user authentication, error handling, and API routes following RESTful conventions
+designing a frontend application with html, css bootsrap and using Flask to connect to the backend
 
+This project also allowed me to explore:
+- Learning how to integrate an external API (Google Maps) 
+- Handling user authentification with bcrypt.
 
+<a name='nextSteps'></a>
+## Next Steps
 
+- Create a profile page for each property. The profile will have all the information that pertains to that particular property, like the tenants assigned to it, any necessary documents, and more. 
+- Implement image and document uploads using AWS S3. (v1.0.1)
+- Search for the properties on the map using its address. 
+- Media queries to make the design more responsive to different sized screens, as well as a mobile-friendly (v1.0.1)
