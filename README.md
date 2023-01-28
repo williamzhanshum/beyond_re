@@ -20,7 +20,7 @@ Beyond Real Estate is built on Python, SQL, Flask, Google API, and Bootstrap.
   - [Login/Registration](#Login/Registration)
   - [Full CRUD for registered users](#FullCRUDforregisteredusers)
   - [Google Maps API](#GoogleMapsApi)
-  - [Conclusion](#Conclusion)
+  - [What I've Learned](#WhatIveLearned)
   - [Next Steps](#nextSteps)
 
 <a name='Login/Registration'></a>
@@ -41,8 +41,8 @@ Registered users have access to full CRUD features for their properties, tenants
 
 This application used the Google API to render that map and geolocation to create the markers for the properties that are being managed by the user. Users can toggle between a list view or a map view of the properties under their care. In the map view, they can see where each property is on the map.
 
-<a name='Conclusion'></a>
-## Conclusion
+<a name='WhatIveLearned'></a>
+## What I've Learned
 
 This project gave me the opportunity to apply and demonstrate what I have learned in:
 
