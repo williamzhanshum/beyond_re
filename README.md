@@ -39,7 +39,7 @@ Registered users have access to full CRUD features for their properties, tenants
 ## Google Maps API
 <img src='https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/ea307459-4e25-4769-8e3a-46c1ec8e54d1.gif?ClientID=vimeo-core-prod&Date=1674862149&Signature=820e436ad0395b1f3d287b9171b2e3c6fcbe6abd' width='600' />
 
-This application used the Google API to render that map and geolocation to create the markers for the properties that are being managed by the user. Users can toggle between a list view or a map view of the properties under their care. In the map view, they can see where each property is on the map.
+This application used the Google API to render that map and geocoding to create the markers for the properties that are being managed by the user. Users can toggle between a list view or a map view of the properties under their care. In the map view, they can see where each property is on the map.
 
 <a name='WhatIveLearned'></a>
 ## What I've Learned
